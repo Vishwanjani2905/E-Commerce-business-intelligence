@@ -1,0 +1,19 @@
+# Data folder (downloaded from Kaggle Olist dataset)
+data/
+
+# Python cache & virtual environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+env/
+.venv/
+
+# Streamlit
+.streamlit/
+
+# OS metadata
+Thumbs.db
+.DS_Store
