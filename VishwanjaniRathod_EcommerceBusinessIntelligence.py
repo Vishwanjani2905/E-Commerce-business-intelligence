@@ -43,7 +43,6 @@ if not IS_STREAMLIT:
     print("  Dataset: Olist Brazilian E-Commerce Public Dataset")
     print("=" * 75)
 
-# %% [markdown]
 # # 2. Load Dataset
 BASE_DIR = os.path.dirname(os.path.abspath(__file__)) if '__file__' in globals() else os.getcwd()
 DATA_DIR = os.path.join(BASE_DIR, 'data')
@@ -63,8 +62,6 @@ def load_raw_data():
 
 orders, order_items, customers, products, payments, reviews, sellers, category_translation = load_raw_data()
 
-# %% [markdown]
-# # 3. Understand the Data
 if not IS_STREAMLIT:
     print("\n--- 3. Understanding the Raw Datasets ---")
     print("Orders shape:", orders.shape)
@@ -86,7 +83,7 @@ if not IS_STREAMLIT:
     print("\nDescriptive statistics for Item Price & Freight:")
     display(order_items[['price', 'freight_value']].describe())
 
-# %% [markdown]
+
 # # 4. Data Cleaning
 # Convert date columns to datetime
 orders['order_purchase_timestamp'] = pd.to_datetime(orders['order_purchase_timestamp'])
@@ -123,7 +120,6 @@ if not IS_STREAMLIT:
     print("Cleaned Orders count:", len(orders))
     print("Unique translated categories:", products_translated['product_category'].nunique())
 
-# %% [markdown]
 # # 5. Merge the Datasets
 # Aggregate order items to order level to avoid incorrect duplicate summing
 order_items_agg = order_items.groupby('order_id').agg(
@@ -165,7 +161,6 @@ if not IS_STREAMLIT:
     print("Merged sales_data shape:", sales_data.shape)
     display(sales_data[['order_id', 'customer_unique_id', 'order_status', 'total_price', 'product_category', 'review_score']].head(3))
 
-# %% [markdown]
 # # 6. Create Business Features
 # Date and time features
 sales_data['order_year'] = sales_data['order_purchase_timestamp'].dt.year
@@ -227,7 +222,6 @@ if not IS_STREAMLIT:
     print(f"Average Review Score:         {average_review_score:.2f} / 5.0")
     print(f"Average Delivery Time:        {average_delivery_time:.1f} days")
 
-# %% [markdown]
 # # 8. Sales Trend Analysis
 monthly_sales = delivered_orders.groupby('order_year_month').agg(
     monthly_revenue=('total_order_value', 'sum'),
@@ -241,7 +235,6 @@ if not IS_STREAMLIT:
     print("\n--- 8. Monthly Sales Trends (Last 6 Months) ---")
     display(monthly_sales.tail(6))
 
-# %% [markdown]
 # # 9. Product Analysis
 category_sales = delivered_orders.groupby('product_category').agg(
     total_revenue=('total_order_value', 'sum'),
@@ -260,7 +253,6 @@ if not IS_STREAMLIT:
     print("\nBottom 5 Product Categories by Revenue:")
     display(bottom_10_categories.head(5))
 
-# %% [markdown]
 # # 10. Customer Analysis
 # RFM Calculation: Recency, Frequency, Monetary
 max_purchase_date = delivered_orders['order_purchase_timestamp'].max()
@@ -304,7 +296,6 @@ if not IS_STREAMLIT:
     print("\nNew vs Repeat Customer Contribution:")
     display(cust_type_analysis)
 
-# %% [markdown]
 # # 11. Geographic Analysis
 state_performance = delivered_orders.groupby('customer_state').agg(
     revenue=('total_order_value', 'sum'),
@@ -319,7 +310,6 @@ if not IS_STREAMLIT:
     print("\n--- 11. Top 5 Brazilian States by Revenue ---")
     display(state_performance.head(5))
 
-# %% [markdown]
 # # 12. Delivery & Review Analysis
 delivery_comparison = delivered_orders.groupby('is_delayed').agg(
     order_count=('order_id', 'nunique'),
@@ -338,7 +328,6 @@ if not IS_STREAMLIT:
     print("\nReview Score Distribution:")
     display(review_distribution)
 
-# %% [markdown]
 # # 13. Customer Segmentation & Predictive Component
 # Predictive model: Predict if an order will receive a Low Review Score (<= 2 stars)
 model_df = delivered_orders.copy()
@@ -371,7 +360,6 @@ if not IS_STREAMLIT:
     for feat, odds in odds_ratios.items():
         print(f"  - {feat:20s}: {odds:.4f}")
 
-# %% [markdown]
 # # 14. Business Insights
 top_category_name = top_10_categories.iloc[0]['product_category']
 top_category_revenue = top_10_categories.iloc[0]['total_revenue']
@@ -400,7 +388,6 @@ if not IS_STREAMLIT:
     print("  - Product bundling in high-order, low-AOV categories.")
     print("=" * 75)
 
-# %% [markdown]
 # # 15. Streamlit Dashboard
 def render_dashboard():
     st.set_page_config(
