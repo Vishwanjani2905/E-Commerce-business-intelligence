@@ -13,7 +13,7 @@ This project is an end-to-end **E-Commerce Business Intelligence & Customer Anal
 
 $$\text{Raw Data} \longrightarrow \text{Data Cleaning} \longrightarrow \text{KPI Formulations} \longrightarrow \text{Exploratory Analysis} \longrightarrow \text{RFM Segmentation} \longrightarrow \text{Predictive Modeling} \longrightarrow \text{Streamlit Dashboard}$$
 
-The solution is unified inside a single Python script (`ecommerce_business_dashboard.py`) designed for dual-execution:
+The solution is unified inside a single Python script (`VishwanjaniRathod_EcommerceBusinessIntelligence.py`) designed for dual-execution:
 1. **Interactive Notebook Workflow (CLI / VS Code):** Step-by-step exploratory analysis, table outputs, and data transformations.
 2. **Executive Web Dashboard (Streamlit):** Interactive multi-tab decision support system with live KPI cards, dynamic filters, and risk simulators.
 
@@ -144,8 +144,10 @@ Open your browser and navigate to: **`http://localhost:8501`**
 E-Commerce-business-intelligence/
 │
 ├── VishwanjaniRathod_EcommerceBusinessIntelligence.py # Unified analysis workflow + Streamlit dashboard (15 sections)
-├── E-Commerce_Business_Intelligence_Project_Report.pdf # Comprehensive academic project report (PDF)
 ├── VishwanjaniRathod_ProjectReport.docx               # Fully editable project report (DOCX)
+├── VishwanjaniRathod_ProjectReport.pdf                # Comprehensive academic project report (PDF)
+├── E-Commerce_Business_Intelligence_Project_Report.docx # Alternate named project report (DOCX)
+├── E-Commerce_Business_Intelligence_Project_Report.pdf  # Alternate named project report (PDF)
 ├── requirements.txt                                   # Minimal pinned dependencies
 ├── README.md                                          # Complete project documentation
 ├── .gitignore                                         # Excludes local data folder and cache
